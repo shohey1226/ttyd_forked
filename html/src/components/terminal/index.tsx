@@ -13,6 +13,7 @@ import 'xterm/dist/xterm.css';
 export interface WindowExtended extends Window {
     term: Terminal;
     tty_auth_token?: string;
+    ttydUrl?: string;
 }
 declare let window: WindowExtended;
 
@@ -116,7 +117,7 @@ export class Xterm extends Component<Props> {
             this.terminal.dispose();
         }
 
-        this.socket = new WebSocket(this.props.url, ['tty']);
+        this.socket = new WebSocket(window.ttydUrl, ['tty']);
         this.terminal = new Terminal(this.props.options);
         const { socket, terminal, container, fitAddon, overlayAddon } = this;
         window.term = terminal;
