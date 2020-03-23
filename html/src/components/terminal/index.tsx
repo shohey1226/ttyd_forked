@@ -18,6 +18,7 @@ interface TtydTerminal extends Terminal {
 declare global {
     interface Window {
         term: TtydTerminal;
+        ttydUrl?: string;
     }
 }
 
@@ -178,7 +179,8 @@ export class Xterm extends Component<Props> {
 
     @bind
     private connect() {
-        this.socket = new WebSocket(this.props.wsUrl, ['tty']);
+        //this.socket = new WebSocket(this.props.wsUrl, ['tty']);
+        this.socket = new WebSocket(window.ttydUrl, ['tty']);
         const { socket } = this;
 
         socket.binaryType = 'arraybuffer';
