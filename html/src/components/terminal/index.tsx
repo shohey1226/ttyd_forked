@@ -308,9 +308,10 @@ export class Xterm extends Component<Props> {
             const keyDispose = terminal.onKey(e => {
                 const event = e.domEvent;
                 if (event.key === 'Enter') {
-                    keyDispose.dispose();
-                    overlayAddon.showOverlay('Reconnecting...', null);
-                    refreshToken().then(connect);
+                    location.reload();
+                    //keyDispose.dispose();
+                    //overlayAddon.showOverlay('Reconnecting...', null);
+                    //refreshToken().then(connect);
                 }
             });
             overlayAddon.showOverlay('Press ⏎ to Reconnect', null);
